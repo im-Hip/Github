@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên Hệ - Blog Cá Nhân</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+        header h1 {
+            margin: 0;
+        }
+        nav {
+            background: #444;
+            padding: 1rem;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 1rem;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav ul li a:hover {
+            color: #ddd;
+        }
+        nav ul li a.active {
+            color: #ddd;
+            border-bottom: 2px solid #ddd;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            margin-bottom: 80px;
+        }
+        .contact-content {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .contact-content h2 {
+            margin-top: 0;
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 0.5rem;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .contact-info {
+            background: #f8f8f8;
+            padding: 1.5rem;
+            border-radius: 5px;
+        }
+        .contact-info h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background: #fff;
+            border-radius: 5px;
+        }
+        .contact-item .icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            width: 30px;
+            text-align: center;
+        }
+        .contact-item .info h4 {
+            margin: 0;
+            color: #333;
+        }
+        .contact-item .info p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .contact-form {
+            background: #f8f8f8;
+            padding: 1.5rem;
+            border-radius: 5px;
+        }
+        .contact-form h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: bold;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: #333;
+            box-shadow: 0 0 5px rgba(51, 51, 51, 0.3);
+        }
+        .submit-btn {
+            background: #333;
+            color: #fff;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        .submit-btn:hover {
+            background: #555;
+        }
+        .social-section {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #f8f8f8;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .social-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: #fff;
+            border-radius: 25px;
+            text-decoration: none;
+            color: #333;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .social-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            border: 1px solid #c3e6cb;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Blog Cá Nhân</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="about.html">Giới Thiệu</a></li>
+            <li><a href="contact.html" class="active">Liên Hệ</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="contact-content">
+            <h2>Liên Hệ Với Tôi</h2>
+            <p>Tôi rất vui khi được kết nối với bạn! Hãy liên hệ với tôi qua các phương thức dưới đây hoặc điền vào form liên hệ.</p>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Thông Tin Liên Hệ</h3>
+                    
+                    <div class="contact-item">
+                        <div class="icon">📧</div>
+                        <div class="info">
+                            <h4>Email</h4>
+                            <p>your.email@example.com</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="icon">📱</div>
+                        <div class="info">
+                            <h4>Điện Thoại</h4>
+                            <p>+84 123 456 789</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="icon">📍</div>
+                        <div class="info">
+                            <h4>Địa Chỉ</h4>
+                            <p>Hồ Chí Minh, Việt Nam</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="icon">🕒</div>
+                        <div class="info">
+                            <h4>Thời Gian Phản Hồi</h4>
+                            <p>Trong vòng 24h</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3>Gửi Tin Nhắn</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Họ và Tên *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Chủ Đề</label>
+                            <select id="subject" name="subject">
+                                <option value="">Chọn chủ đề</option>
+                                <option value="collaboration">Hợp Tác</option>
+                                <option value="question">Câu Hỏi</option>
+                                <option value="feedback">Phản Hồi</option>
+                                <option value="other">Khác</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Tin Nhắn *</label>
+                            <textarea id="message" name="message" placeholder="Hãy chia sẻ những gì bạn muốn nói..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Gửi Tin Nhắn</button>
+                    </form>
+                    <div id="successMessage" class="success-message">
+                        Cảm ơn bạn đã liên hệ! Tôi sẽ phản hồi trong thời gian sớm nhất.
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-section">
+                <h3>Kết Nối Với Tôi</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <span>📘</span>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="#" class="social-link">
+                        <span>🐦</span>
+                        <span>Twitter</span>
+                    </a>
+                    <a href="#" class="social-link">
+                        <span>💼</span>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="#" class="social-link">
+                        <span>💻</span>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="social-link">
+                        <span>📸</span>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+                <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                    Hoặc theo dõi tôi trên các mạng xã hội để cập nhật những bài viết mới nhất!
+                </p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 Blog Cá Nhân. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Lấy dữ liệu form
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            // Kiểm tra dữ liệu
+            if (name && email && message) {
+                // Hiển thị thông báo thành công
+                document.getElementById('successMessage').style.display = 'block';
+                
+                // Reset form
+                this.reset();
+                
+                // Cuộn đến thông báo
+                document.getElementById('successMessage').scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                
+                // Ẩn thông báo sau 5 giây
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+                
+                // Ở đây bạn có thể thêm code để gửi email thực sự
+                console.log('Form submitted:', { name, email, subject, message });
+            }
+        });
+
+        // Thêm hiệu ứng focus cho các input
+        const inputs = document.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+                this.parentElement.style.transition = 'transform 0.3s ease';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+
+        // Hiệu ứng hover cho social links
+        const socialLinks = document.querySelectorAll('.social-link');
+        socialLinks.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                this.style.background = '#333';
+                this.style.color = '#fff';
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                this.style.background = '#fff';
+                this.style.color = '#333';
+            });
+        });
+    </script>
+</body>
+</html>

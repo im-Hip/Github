@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới Thiệu - Blog Cá Nhân</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+        header h1 {
+            margin: 0;
+        }
+        nav {
+            background: #444;
+            padding: 1rem;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 1rem;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav ul li a:hover {
+            color: #ddd;
+        }
+        nav ul li a.active {
+            color: #ddd;
+            border-bottom: 2px solid #ddd;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            margin-bottom: 80px;
+        }
+        .about-content {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .about-content h2 {
+            margin-top: 0;
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 0.5rem;
+        }
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #333, #555);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        .profile-info h3 {
+            margin: 0;
+            color: #333;
+            font-size: 1.5rem;
+        }
+        .profile-info p {
+            margin: 0.5rem 0;
+            color: #666;
+        }
+        .skills-section {
+            margin-top: 2rem;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .skill-item {
+            background: #f8f8f8;
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid #333;
+        }
+        .skill-item h4 {
+            margin: 0 0 0.5rem 0;
+            color: #333;
+        }
+        .timeline {
+            margin-top: 2rem;
+        }
+        .timeline-item {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 10px;
+            height: 10px;
+            background: #333;
+            border-radius: 50%;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 1.5rem;
+            width: 2px;
+            height: calc(100% - 1rem);
+            background: #ddd;
+        }
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        .timeline-date {
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        .timeline-content h4 {
+            margin: 0.5rem 0;
+            color: #333;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Blog Cá Nhân</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="about.html" class="active">Giới Thiệu</a></li>
+            <li><a href="contact.html">Liên Hệ</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="about-content">
+            <h2>Giới Thiệu Về Tôi</h2>
+            
+            <div class="profile-section">
+                <div class="profile-image">
+                    A
+                </div>
+                <div class="profile-info">
+                    <h3>Nguyễn Văn A</h3>
+                    <p><strong>Lập trình viên & Blogger</strong></p>
+                    <p>📍 Hồ Chí Minh, Việt Nam</p>
+                    <p>🎂 25 tuổi</p>
+                </div>
+            </div>
+
+            <div class="intro-text">
+                <p>Xin chào! Tôi là một lập trình viên đam mê công nghệ và luôn tìm kiếm những điều mới mẻ trong thế giới lập trình. Blog này là nơi tôi chia sẻ hành trình học hỏi, kinh nghiệm làm việc và những suy nghĩ cá nhân về cuộc sống.</p>
+                
+                <p>Tôi tin rằng việc học hỏi là một quá trình không ngừng, và mỗi ngày đều là cơ hội để khám phá điều gì đó mới. Thông qua blog này, tôi hy vọng có thể kết nối với những người cùng chí hướng và cùng nhau phát triển.</p>
+            </div>
+
+            <div class="skills-section">
+                <h2>Kỹ Năng & Sở Thích</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <h4>💻 Lập Trình</h4>
+                        <p>JavaScript, Python, HTML/CSS, React</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>🎨 Thiết Kế</h4>
+                        <p>UI/UX Design, Photoshop, Figma</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>📚 Học Hỏi</h4>
+                        <p>Đọc sách, tham gia khóa học online</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>🌱 Sở Thích</h4>
+                        <p>Du lịch, nhiếp ảnh, âm nhạc</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline">
+                <h2>Hành Trình Của Tôi</h2>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025</div>
+                    <div class="timeline-content">
+                        <h4>Bắt đầu viết blog</h4>
+                        <p>Tạo blog cá nhân để chia sẻ kiến thức và kinh nghiệm lập trình</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024 - 2025</div>
+                    <div class="timeline-content">
+                        <h4>Học lập trình web</h4>
+                        <p>Tập trung học HTML, CSS, JavaScript và các framework hiện đại</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2023</div>
+                    <div class="timeline-content">
+                        <h4>Khởi đầu hành trình</h4>
+                        <p>Bước đầu tiên vào thế giới lập trình với Python cơ bản</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; padding: 1.5rem; background: #f8f8f8; border-radius: 5px; text-align: center;">
+                <h3>Motto của tôi</h3>
+                <p style="font-style: italic; font-size: 1.1rem; color: #555; margin: 0;">
+                    "Mỗi dòng code là một bước tiến, mỗi lỗi là một bài học"
+                </p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 Blog Cá Nhân. All rights reserved.</p>
+    </footer>
+</body>
+</html>
