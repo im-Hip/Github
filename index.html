@@ -3,105 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="demo.css">
     <title>Blog Cá Nhân</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            background-color: #f4f4f4;
-        }
-        header {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1rem;
-        }
-        header h1 {
-            margin: 0;
-        }
-        nav {
-            background: #444;
-            padding: 1rem;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
-        nav ul li {
-            margin: 0 1rem;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        nav ul li a:hover {
-            color: #ddd;
-        }
-        .container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        .post {
-            background: #fff;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .post h2 {
-            margin-top: 0;
-        }
-        .comment-section {
-            margin-top: 2rem;
-        }
-        .comment-section h3 {
-            margin-bottom: 1rem;
-        }
-        .comment-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        .comment-form input, .comment-form textarea {
-            padding: 0.5rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .comment-form button {
-            padding: 0.5rem;
-            background: #333;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .comment-form button:hover {
-            background: #555;
-        }
-        .comment {
-            background: #fff;
-            padding: 1rem;
-            margin-bottom: 0.5rem;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1rem;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -114,16 +17,21 @@
             <li><a href="#contact">Liên Hệ</a></li>
         </ul>
     </nav>
-    <div class="container">
+    <div class="search-bar">
+        <input type="text" id="search" placeholder="Tìm kiếm bài viết...">
+    </div>
+    <div class="container" id="post-container">
         <div class="post">
             <h2>Bài Viết Đầu Tiên</h2>
             <p>Ngày đăng: 22/09/2025</p>
             <p>Đây là bài viết đầu tiên trên blog của tôi. Chào mừng bạn đến với không gian chia sẻ kiến thức và trải nghiệm của tôi!</p>
+            <button class="like-btn">👍 Thích (<span class="like-count">0</span>)</button>
         </div>
         <div class="post">
             <h2>Hành Trình Học Lập Trình</h2>
             <p>Ngày đăng: 20/09/2025</p>
             <p>Tôi đã bắt đầu học lập trình từ đầu năm nay, và đây là những gì tôi đã học được...</p>
+            <button class="like-btn">👍 Thích (<span class="like-count">0</span>)</button>
         </div>
         <div class="comment-section">
             <h3>Bình Luận</h3>
@@ -139,16 +47,58 @@
         <p>&copy; 2025 Blog Cá Nhân. All rights reserved.</p>
     </footer>
     <script>
-        document.getElementById('comment-form').addEventListener('submit', function(event) {
+        // Like button
+        document.querySelectorAll(".like-btn").forEach((btn) => {
+            btn.addEventListener("click", function() {
+                const countSpan = this.querySelector(".like-count");
+                let count = parseInt(countSpan.textContent);
+                count++;
+                countSpan.textContent = count;
+            });
+        });
+
+        // Comment system with LocalStorage
+        const commentForm = document.getElementById('comment-form');
+        const commentsList = document.getElementById('comments-list');
+
+        // Load saved comments
+        window.onload = function() {
+            const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
+            savedComments.forEach(c => {
+                addComment(c.name, c.text, c.date, false);
+            });
+        };
+
+        commentForm.addEventListener('submit', function(event) {
             event.preventDefault();
             const name = document.getElementById('comment-name').value;
             const text = document.getElementById('comment-text').value;
-            const commentList = document.getElementById('comments-list');
+            const date = new Date().toLocaleString();
+            addComment(name, text, date, true);
+            commentForm.reset();
+        });
+
+        function addComment(name, text, date, save) {
             const commentDiv = document.createElement('div');
             commentDiv.classList.add('comment');
-            commentDiv.innerHTML = `<strong>${name}</strong>: ${text} <br><small>${new Date().toLocaleString()}</small>`;
-            commentList.prepend(commentDiv);
-            document.getElementById('comment-form').reset();
+            commentDiv.innerHTML = `<strong>${name}</strong>: ${text} <br><small>${date}</small>`;
+            commentsList.prepend(commentDiv);
+
+            if (save) {
+                const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
+                savedComments.unshift({ name, text, date });
+                localStorage.setItem('comments', JSON.stringify(savedComments));
+            }
+        }
+
+        // Search filter
+        document.getElementById('search').addEventListener('input', function() {
+            const keyword = this.value.toLowerCase();
+            const posts = document.querySelectorAll('.post');
+            posts.forEach(post => {
+                const text = post.textContent.toLowerCase();
+                post.style.display = text.includes(keyword) ? 'block' : 'none';
+            });
         });
     </script>
 </body>
